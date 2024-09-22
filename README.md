@@ -13,4 +13,4 @@ To get started with Naive, clone the repository and run the setup script:
 ```bash
 git clone https://github.com/THAMIZH-ARASU/Naive.git
 cd naive
-python naive.py
+python shell.py
