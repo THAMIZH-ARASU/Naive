@@ -1,0 +1,24 @@
+For Loop:
+
+
+Syntax:
+
+For <elem_name> = <start_value> to <end_value> Step <Step_value> then <expression>
+
+Example:
+
+Elem fact = 1
+Elem num = 11
+For i = 1 to num Step 1 then fact = fact * i
+
+
+While Loop:
+
+Syntax:
+
+While <condition> Then <expression>
+
+Example:
+
+Elem i = 1
+While i < 10 Then i = i + 1

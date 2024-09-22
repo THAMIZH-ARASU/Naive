@@ -1,0 +1,51 @@
+statements      : NEWLINE* expression (NEWLINE* expression)* NEWLINE*?
+
+expression      : KEYWORD:Elem IDENTIFIER EQ expression
+                : logical-expr ((KEYWORD:And|KEYWORD:Not) logical-expr) *
+              
+logical-expr    : Not logical-expr
+                : arithmetic-expr ((EE|LT|GT|LTE|GTE) arithmetic-expr) *
+
+artihmetic-expr : term ((PLUS|MINUS) term)*
+
+term            : factor ((MUL|DIV) factor)*
+
+factor          : (PLUS|MINUS) factor
+                : power
+
+power           : call (POW factor)* 
+
+call            : molecule (LPAREN (expression (COMMA, expression)* )? RPAREN)?
+
+molecule        : INI|FLOAT|STRING|IDENTIFIER
+                : LPAREM expression RPAREN
+                : LIST-expression
+                : IF-expression
+                : FOR-expression
+                : WHILE-expression
+                : function-definition
+
+LIST-expression : LSQUARE (expression (COMMA, expression)* )? RSQUARE
+            
+IF-expression   : KEYWORD:If expression KEYWORD:Then 
+                    (expression IF-expr-1|IF-expr-2?)
+                    (NEWLINE statements KEYWORD:Ends | IF-expr-1 | IF-expr-2)
+
+IF-expr-1       : KEYWORD:Elif expression KEYWORD:Then 
+                    (expression IF-expr-1|IF-expr-2?)
+                    (NEWLINE statements KEYWORD:Ends | IF-expr-1 | IF-expr-2)
+
+IF-expr-2       : KEYWORD:Else 
+                    expression | (NEWLINE statements KEYWORD:Ends)
+
+FOR-expression  : KEYWORD:For IDENTIFIER EQ expression KEYWORD:To expression
+                    (KEYWORD:Step expression)? KEYWORD:Then 
+                    expression | (NEWLINE statements KEYWORD:Ends)
+
+WHILE-expression : KEYWORD:While expression KEYWORD:Then 
+                    expression | (NEWLINE statements KEYWORD:Ends)
+
+function-definition : KEYWORD:Define IDENTIFIER?
+                        LPAREN (IDENTFIER (COMMA IDENTIFIER)* )? RPAREN
+                        (ARROW expression) | (NEWLINE statements KEYWORD:Ends)
+

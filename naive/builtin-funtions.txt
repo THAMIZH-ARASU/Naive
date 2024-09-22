@@ -1,0 +1,11 @@
+Show (printing)
+Show_Ret
+Get
+Get_Int
+Is_Number
+Is_String
+Is_List
+Is_Function
+Append
+Pop
+Extend

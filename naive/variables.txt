@@ -1,0 +1,12 @@
+In order to include Variables
+Lexer must be updated with new token types
+
+IDENTIFIER
+KEYWORD
+EQ
+
+elem            element_name       =    <expression>
+  ↑                  ↑             ↑
+KEYWORD         IDENTIFIER       EQUALS
+
+For Example: elem a = 5

@@ -1,0 +1,6 @@
+If <condition> Then <expression> Elif <condition> Then <expression> Else <expression>
+
+
+Example:
+elem age = 27
+elem a = If age >= 18 Then 40 Else 20
